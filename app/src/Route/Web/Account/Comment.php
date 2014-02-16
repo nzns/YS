@@ -19,7 +19,7 @@ class Comment extends Web
         $offset = ($page - 1) * $limit;
         $user = $this->user;
 
-        if ($this->params['id']) {
+        if ($this->params && $this->params['id']) {
             $user = Model::factory('User')->find_one($this->params['id']);
 
             if (!$user) {
