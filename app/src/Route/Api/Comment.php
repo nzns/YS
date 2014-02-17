@@ -3,6 +3,7 @@
 namespace Route\Api;
 
 use Model\Article;
+use Pagon\Html;
 use Route\Api;
 use Model\Model;
 use ORM;
@@ -33,7 +34,11 @@ class Comment extends Api
             $app = $this->app;
             $html = '';
             foreach ($comments as $comment) {
-                $html .= $app->compile('blocks/comment.php', array('comment' => $comment, 'user' => $this->user))->render();
+                $comment->text = Html::encode($comment->text);
+                $html .= $app->compile('blocks/comment.php', array(
+                        'comment' => $comment,
+                        'user'    => $this->user)
+                )->render();
             }
             $this->data['html'] = $html;
         }
