@@ -16,6 +16,8 @@ class Html
             $markdown = new INewsMarkdownParser();
         }
 
+        $text = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $text);
+
         return $markdown->transformMarkdown($text);
     }
 

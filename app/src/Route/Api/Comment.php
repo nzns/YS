@@ -34,7 +34,6 @@ class Comment extends Api
             $app = $this->app;
             $html = '';
             foreach ($comments as $comment) {
-                $comment->text = Html::encode($comment->text);
                 $html .= $app->compile('blocks/comment.php', array(
                         'comment' => $comment,
                         'user'    => $this->user)
