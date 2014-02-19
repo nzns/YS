@@ -14,7 +14,7 @@ class INewsMarkdownParser extends MarkdownExtraParser
     {
         $this->block_gamut += array(
             "parserUser" => 100,
-            'parserUrl'  => 0,
+            'parserUrl'  => 10000,
         );
 
         $this->span_gamut += array(
@@ -38,7 +38,7 @@ class INewsMarkdownParser extends MarkdownExtraParser
                 \s(?!(?:\]|`))
             }xs', function ($match) {
             if ($user = User::dispense()->where('name', $match[1])->find_one()) {
-                return '<a href="' . Url::to('/u/' . $user->id) . '">' . trim($match[0]) . '</a> ';
+                return '[' . trim($match[0]) . '](' . Url::to('/u/' . $user->id) . ')';
             } else {
                 return $match[0];
             }
@@ -53,11 +53,7 @@ class INewsMarkdownParser extends MarkdownExtraParser
                 (?!\)|\"|'|\])
             }xs",
             function ($match) {
-                if (strpos($match[1], $_SERVER['HTTP_HOST'])) {
-                    return '[' . $match[1] . '](' . $match[1] . ')';
-                } else {
-                    return '<a href="' . $match[1] . '" target="_blank">' . $match[1] . '</a>';
-                }
+                return '[' . $match[1] . '](' . $match[1] . ')';
             }, $text);
     }
 }
