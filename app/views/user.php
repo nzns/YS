@@ -27,7 +27,7 @@ function make_url($text) {
         <li>Comments: <?php echo $author->comments()->count();?></li>
         <li>Diggs: <?php echo $author->diggs()->count();?></li>
         <li>Created at: <small><?php echo $author->created_at;?></small></li>
-        <li>Bio: <?php echo make_url($author->bio); ?></li>
+        <li>Bio: <?php echo \Helper\Html::fromMarkdown($author->bio); ?></li>
     </ul>
 
     <?php if ($user && $user->id == $author->id): ?>
