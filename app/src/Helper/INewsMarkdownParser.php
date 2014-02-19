@@ -8,6 +8,8 @@ use Pagon\Url;
 
 class INewsMarkdownParser extends MarkdownExtraParser
 {
+    var $no_markup = true;
+
     public function __construct(array $configure = null)
     {
         $this->block_gamut += array(
