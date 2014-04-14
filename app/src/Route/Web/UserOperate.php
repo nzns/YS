@@ -29,6 +29,6 @@ class UserOperate extends Web
                 break;
         }
 
-        $this->redirect(url('/u/' . $user->id));
+        $this->redirect('/u/' . $user->id);
     }
 }

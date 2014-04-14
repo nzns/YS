@@ -83,8 +83,8 @@ class Web extends Rest
     {
         if (!$this->user) {
             $this->redirect(
-                Url::to('/account/login?continue=' .
-                ($this->input->is('get') ? $this->input->uri() : $this->input->refer()))
+                '/account/login?continue=' .
+                ($this->input->is('get') ? $this->input->uri() : $this->input->refer())
             );
         }
     }
