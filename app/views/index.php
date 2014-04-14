@@ -6,7 +6,7 @@
         <h4>
             <small class="pull-right"><?php echo $item->created_at; ?></small>
             <a href="<?php echo url($item->link()); ?>" <?php echo !$item->content ? 'target="_blank"' : '' ?>>
-                <?php echo !$item->content ? '<sup class="font font-export"></sup>' : '' ?><?php echo $item->title; ?>
+                <?php echo !$item->content ? '<sup class="font font-export"></sup>' : '' ?><?php echo e($item->title); ?>
             </a>
             <small class="up-content">
                 <span class="btn-up font font-thumbs-up <?php echo $user && $item->isDiggBy($user->id) ? 'on' : '' ?>"
@@ -28,7 +28,7 @@
         <a class="gravatar" href="/u/<?php echo $author->id; ?>"><img src="<?php echo \Helper\Html::gravatar($author->email, 36); ?>" /></a>
         <h4>
             <a href="<?php echo url($item->link()); ?>" <?php echo !$item->content ? 'target="_blank"' : '' ?>>
-               <?php echo $item->title; ?><?php echo !$item->content ? '<sup class="font font-export"></sup>' : '' ?>
+               <?php echo e($item->title); ?><?php echo !$item->content ? '<sup class="font font-export"></sup>' : '' ?>
             </a>
             <small class="up-content">
                 <span class="btn-up font font-thumbs-up <?php echo $user && $item->isDiggBy($user->id) ? 'on' : '' ?>"
